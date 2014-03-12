@@ -28,15 +28,23 @@ class SignedAPI(trustly.api.api.API):
         self.api_username = username
         self.api_password = password
 
-        self.load_merchant_privatekey(merchant_privatekeyfile)
+        if merchant_privatekeyfile is not None:
+            self.load_merchant_privatekey(merchant_privatekeyfile)
 
     def load_merchant_privatekey(self, filename):
         pkeyfile = file(filename, 'r')
-        self.merchant_privatekey = RSA.importKey(pkeyfile.read())
+        cert = pkeyfile.read()
+        self.use_merchant_privatekey(cert)
+
+    def use_merchant_privatekey(self, cert):
+        self.merchant_privatekey = RSA.importKey(cert)
         self.merchant_signer = PKCS1_v1_5.new(self.merchant_privatekey)
         pkeyfile.close()
 
     def sign_merchant_request(self, data):
+        if self.merchant_signer is None:
+            raise trustly.exceptions.TrustlySignatureError('No private key has been loaded for signing')
+
         method = data.get_method()
         if method is None:
             method = ''
