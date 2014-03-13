@@ -99,7 +99,8 @@ class SignedAPI(trustly.api.api.API):
             successurl=None, failurl=None, templateurl=None, urltarget=None,
             mobilephone=None, firstname=None, lastname=None,
             nationalidentificationnumber=None, shopperstatement=None,
-            suggestedminamount=None, suggestedmaxamount=None):
+            suggestedminamount=None, suggestedmaxamount=None,
+            integrationmodule=None):
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Deposit',
                 data=dict(
@@ -123,7 +124,8 @@ class SignedAPI(trustly.api.api.API):
                         NationalIdentificationNumber=nationalidentificationnumber,
                         ShopperStatement=shopperstatement,
                         SuggestedMinAmount=suggestedminamount,
-                        SuggestedMaxAmount=suggestedmaxamount
+                        SuggestedMaxAmount=suggestedmaxamount,
+                        IntegrationModule=integrationmodule
                         )
                 )
         return self.call(data)
