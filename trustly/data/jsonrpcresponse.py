@@ -48,3 +48,19 @@ class JSONRPCResponse(trustly.data.response.Response):
                 raise
 
         raise ValueError('The result is not an error')
+
+    def get_data(self, name=None):
+        data = self.payload.get('result')
+        if data is not None:
+            data = data.get('data')
+        if data is None:
+            if name is not None:
+                raise KeyError('{0} is not present in the result data'.format(name))
+            else:
+                return None
+
+        if name is None:
+            return data.copy()
+        else:
+            return data[name]
+
