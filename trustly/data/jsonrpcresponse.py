@@ -28,7 +28,7 @@ class JSONRPCResponse(trustly.data.response.Response):
     def get_error_code(self):
         if self.is_error():
             try:
-                return self.result.get['data']['code']
+                return self.result.get['error']['code']
             except KeyError as e:
                 return None
             except:
@@ -41,7 +41,7 @@ class JSONRPCResponse(trustly.data.response.Response):
     def get_error_message(self):
         if self.is_error():
             try:
-                return self.result.get['data']['message']
+                return self.result.get['error']['message']
             except KeyError as e:
                 return None
             except:
