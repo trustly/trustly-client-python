@@ -260,7 +260,8 @@ class SignedAPI(trustly.api.api.API):
     def p2p(self, notificationurl, enduserid, messageid, ip,
             authorizeonly=None, templatedata=None, successurl=None,
             method=None, lastname=None, firstname=None, urltarget=None,
-            locale=None, amount=None, currency=None, templateurl=None):
+            locale=None, amount=None, currency=None, templateurl=None,
+            displaycurrency=None):
 
         authorizeonly = self.api_bool(authorizeonly)
 
@@ -283,6 +284,7 @@ class SignedAPI(trustly.api.api.API):
                     Amount=amount,
                     TemplateURL=templateurl,
                     Currency=currency,
+                    DisplayCurrency=displaycurrency,
                     IP=ip
                     )
                 )
