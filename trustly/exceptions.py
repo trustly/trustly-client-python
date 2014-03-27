@@ -8,7 +8,7 @@ class TrustlyDataError(Exception):
     pass
 
 class TrustlySignatureError(Exception):
-    def __init__(self, message, data):
+    def __init__(self, message, data=None):
         super(TrustlySignatureError, self).__init__(message)
         self.signature_data = data
 
