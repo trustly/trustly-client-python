@@ -82,3 +82,10 @@ class UnsignedAPI(trustly.api.api.API):
 
         return super(UnsignedAPI, self).call(data)
 
+    def hello(self):
+        data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Hello')
+
+            # Call parent directly here we never want to get a new session
+            # uuid for just this single call, if we have it use it, but
+            #  otherwise just live happliy
+        return super(UnsignedAPI, self).call(data)
