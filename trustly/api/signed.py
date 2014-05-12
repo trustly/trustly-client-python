@@ -34,12 +34,12 @@ class SignedAPI(trustly.api.api.API):
     def load_merchant_privatekey(self, filename):
         pkeyfile = file(filename, 'r')
         cert = pkeyfile.read()
+        pkeyfile.close()
         self.use_merchant_privatekey(cert)
 
     def use_merchant_privatekey(self, cert):
         self.merchant_privatekey = RSA.importKey(cert)
         self.merchant_signer = PKCS1_v1_5.new(self.merchant_privatekey)
-        pkeyfile.close()
 
     def sign_merchant_request(self, data):
         if self.merchant_signer is None:
