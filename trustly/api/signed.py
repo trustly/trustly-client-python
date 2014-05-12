@@ -320,6 +320,6 @@ class SignedAPI(trustly.api.api.API):
     def hello(self):
             # The hello call is not signed, use an unsigned API to do the request and then void it 
         api = trustly.api.unsigned.UnsignedAPI(username=self.api_username, password=self.api_password,
-                host=self.api_host, self.api_port, self.api_is_https)
+                host=self.api_host, port=self.api_port, is_https=self.api_is_https)
 
         return api.hello()
