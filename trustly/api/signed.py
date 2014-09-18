@@ -220,8 +220,8 @@ class SignedAPI(trustly.api.api.API):
         return self.call(data)
 
     def selectaccount(self, notificationurl, enduserid, messageid,
-            locale=None, country=None, ip=None, templateurl=None,
-            firstname=None, lastname=None):
+            locale=None, country=None, ip=None, successurl=None, urltarget=None,
+            mobilephone=None, firstname=None, lastname=None):
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='SelectAccount',
                 data=dict(
@@ -234,7 +234,9 @@ class SignedAPI(trustly.api.api.API):
                         Locale=locale,
                         Country=country,
                         IP=ip,
-                        TemplateURL=templateurl,
+                        SuccessURL=successurl,
+                        URLTarget=urltarget,
+                        MobilePhone=mobilephone,
                         Firstname=firstname,
                         Lastname=lastname
                         )
