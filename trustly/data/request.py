@@ -30,10 +30,14 @@ class Request(trustly.data.data.Data):
 
         # Initialize the data class using a full payload structure. Payload if
         # provided should be a dictionary formatted as the request should be. 
-    def __init__(self, method=method, payload=None):
+    def __init__(self, method=None, payload=None):
         super(Request, self).__init__(payload=payload)
 
-        self.method = method
+        if method is not None:
+            self.method = method
+        elif payload is not None:
+            self.method = self.payload.get('method')
+
         
         # Return the current method for which this call is destined
     def get_method(self):
