@@ -96,8 +96,7 @@ class API(object):
         method = response.get_method()
         uuid = response.get_uuid()
         signature = response.get_signature()
-        data = response.get_result()
-        data = data.get('data')
+        data = response.get_data()
 
         return self._verify_trustly_signed_data(method, uuid, signature, data)
 

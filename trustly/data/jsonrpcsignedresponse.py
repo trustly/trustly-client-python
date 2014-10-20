@@ -24,10 +24,10 @@ THE SOFTWARE.
 
 import types
 
-import trustly.data.response
+import trustly.data.jsonrpcresponse
 import trustly.exceptions
 
-class JSONRPCResponse(trustly.data.response.Response):
+class JSONRPCSignedResponse(trustly.data.jsonrpcresponse.JSONRPCResponse):
 
         # Intialize a JSON RPC response from the result of a httplib call (not
         # yet read). The JSON Response from the call will be read and stored,
@@ -35,43 +35,52 @@ class JSONRPCResponse(trustly.data.response.Response):
         # JSONRPCResponse additionally defines self.result wich will point to
         # the result structure for the call. 
     def __init__(self, call):
-        super(JSONRPCResponse, self).__init__(call=call)
+        super(JSONRPCSignedResponse, self).__init__(call=call)
 
-        version = self.get('version')
+        # A signed JSON RPC Error result basically looks like this:
+        # {
+        #     "version": "1.1",
+        #     "error": {
+        #             "error": {
+        #                 "signature": "...",
+        #                 "data": {
+        #                 "code": 620,
+        #                 "message": "ERROR_UNKNOWN"
+        #             },
+        #             "method": "...",
+        #             "uuid": "..."
+        #         },
+        #         "name": "JSONRPCError",
+        #         "code": 620,
+        #         "message": "ERROR_UNKNOWN"
+        #     }
+        # }
 
-        if version != '1.1':
-            raise trustly.exceptions.TrustlyJSONRPCVersionError('JSON RPC Version {0} is not supported'.format(version))
+        # A good signed result will be on the form:
+        # {
+        #     "version": "1.1",
+        #     "result": {
+        #         "signature": "...",
+        #         "method": "...",
+        #         "data": {
+        #             "url": "...",
+        #             "orderid": "..."
+        #         },
+        #         "uuid": "...",
+        #     }
+        # }
+        # 
+        # The trustly.data will point response_result /result or /error respectivly, we need to take care of the signed part here only.
 
-			# An unsigned JSON RPC Error result basically looks like this:
-			# {
-			#     "version": "1.1",
-			#     "error": {
-			#         "name": "JSONRPCError",
-			#         "code": 620,
-			#         "message": "ERROR_UNKNOWN"
-			#     }
-			# }
-			#
-			# And a unsigned result will be on the form:
-			# {
-			#     "version": "1.1",
-			#     "result": {
-			#         "now": "...",
-			#         "data": []
-			#     }
-			# }
-			#
-			# We want response_result to always be the result of the
-			# operation, The trustly.data will point response_result /result
-			# or /error respectivly, we need to do nothing extra here
-			#
+        if self.is_error():
+            self.response_result = self.response_result.get('error')
 
         # Return the error code from the JSON RPC response, if any (None
         # otherwise). Will raise ValueError if the response was not an error.
     def get_error_code(self):
         if self.is_error():
             try:
-                return self.response_result.get['code']
+                return self.response_result.get['data']['code']
             except KeyError as e:
                 return None
             except:
@@ -84,10 +93,25 @@ class JSONRPCResponse(trustly.data.response.Response):
     def get_error_message(self):
         if self.is_error():
             try:
-                return self.response_result.get['message']
+                return self.response_result.get['data']['message']
             except KeyError as e:
                 return None
             except:
                 raise
 
         raise ValueError('The result is not an error')
+
+    def get_data(self, name=None):
+        data = self.response_result.get('data')
+        if data is None:
+            if name is not None:
+                raise KeyError('{0} is not present in the result data'.format(name))
+            else:
+                return None
+
+        if name is None:
+            return data.copy()
+        else:
+            return data[name]
+
+

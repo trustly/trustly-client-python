@@ -32,7 +32,7 @@ from Crypto.PublicKey import RSA
 import trustly.api.api
 import trustly.exceptions
 import trustly.data.jsonrpcrequest
-import trustly.data.jsonrpcresponse
+import trustly.data.jsonrpcsignedresponse
 
 class SignedAPI(trustly.api.api.API):
         # Basic key management, the actual key and the imported class
@@ -92,7 +92,7 @@ class SignedAPI(trustly.api.api.API):
         request.set_param('Signature', self.sign_merchant_request(request))
 
     def handle_response(self, request, httpcall):
-        response = trustly.data.jsonrpcresponse.JSONRPCResponse(httpcall)
+        response = trustly.data.jsonrpcresponse.JSONRPCSignedResponse(httpcall)
 
         if not self.verify_trustly_signed_response(response):
             raise trustly.exceptions.TrustlySignatureError('Incoming message signature is not valid', response)
