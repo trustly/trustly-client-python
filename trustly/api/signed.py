@@ -92,7 +92,7 @@ class SignedAPI(trustly.api.api.API):
         request.set_param('Signature', self.sign_merchant_request(request))
 
     def handle_response(self, request, httpcall):
-        response = trustly.data.jsonrpcresponse.JSONRPCSignedResponse(httpcall)
+        response = trustly.data.jsonrpcsignedresponse.JSONRPCSignedResponse(httpcall)
 
         if not self.verify_trustly_signed_response(response):
             raise trustly.exceptions.TrustlySignatureError('Incoming message signature is not valid', response)
