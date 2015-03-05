@@ -81,8 +81,8 @@ class SignedAPI(trustly.api.api.API):
         if data is None:
             data = {}
 
-        plaintext = method + uuid + self.serialize_data(data)
-        sha1hash = SHA.new(plaintext)
+        plaintext = unicode(method + uuid + self.serialize_data(data))
+        sha1hash = SHA.new(plaintext.encode('utf-8'))
         signature = self.merchant_signer.sign(sha1hash)
         return base64.b64encode(signature)
 

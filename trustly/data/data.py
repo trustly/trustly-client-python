@@ -87,6 +87,6 @@ class Data(object):
     def json(self, pretty=False):
         data = self.get()
         if pretty:
-            return json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
+            return json.dumps(data, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         else:
             return json.dumps(data)

@@ -73,7 +73,7 @@ class API(object):
             for k in sorted(data.keys(), key=lambda s: str(s)):
                 ret = ret + k + self.serialize_data(data[k]) 
         elif data is not None:
-            return str(data)
+            return unicode(data)
         return ret
 
     def _verify_trustly_signed_data(self, method, uuid, signature, data):
