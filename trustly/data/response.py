@@ -48,6 +48,8 @@ class Response(trustly.data.data.Data):
         # defined, response_status and response_reason will however be set to
         # the corresponding http responses
     def __init__(self, call):
+        super(Response, self).__init__()
+
         resp = call.getresponse()
 
         self.response_status = resp.status
@@ -57,6 +59,8 @@ class Response(trustly.data.data.Data):
 
         try:
             payload = json.loads(self.response_body)
+            if payload is not None:
+                self.payload = payload
         except ValueError as e:
                 # Only throw the connection error exception here if we did not 
                 # receive a valid JSON response, if we did recive one we will use 
@@ -65,8 +69,6 @@ class Response(trustly.data.data.Data):
                 raise trustly.exceptions.TrustlyConnectionError('{0} {1}'.format(self.response_status, self.response_reason))
             else:
                 raise trustly.exceptions.TrustlyDataError(str(e))
-
-        super(Response, self).__init__(payload=payload)
 
         try:
             self.response_result = self.get('result')

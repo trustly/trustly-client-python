@@ -36,6 +36,7 @@ class JSONRPCRequest(trustly.data.request.Request):
         # TypeError will be issued.
         # method should be set to the name of the RPC method to call
     def __init__(self, method=None, data=None, attributes=None):
+        super(JSONRPCRequest, self).__init__()
 
         payload = None
         if data is not None or attributes is not None:
@@ -54,10 +55,10 @@ class JSONRPCRequest(trustly.data.request.Request):
             if attributes is not None:
                 payload['params']['Data']['Attributes'] = attributes
 
+            self.payload = payload
+
             # We do not relay the method in the super call as for the JSON RPC
             # we keep this value in the payload and manage it ourself.
-        super(JSONRPCRequest, self).__init__(payload=payload)
-
         if method is not None:
             self.payload['method'] = method
 

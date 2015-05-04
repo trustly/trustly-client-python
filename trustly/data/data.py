@@ -28,11 +28,7 @@ import types
 class Data(object):
     payload = None
 
-    def __init__(self, payload=None):
-        if payload is not None:
-            self.payload = self.vacuum(payload)
-
-        if self.payload is None:
+    def __init__(self):
             self.payload = {}
 
         # Vacuum out all keys being set to None in the data to be communicated
