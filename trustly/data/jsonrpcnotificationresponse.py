@@ -108,3 +108,5 @@ class JSONRPCNotificationResponse(trustly.data.data.Data):
 
     def get_uuid(self):
         return self.get_result('uuid')
+
+# vim: set et cindent ts=4 ts=4 sw=4:

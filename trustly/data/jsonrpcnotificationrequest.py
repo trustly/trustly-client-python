@@ -101,3 +101,5 @@ class JSONRPCNotificationRequest(trustly.data.data.Data):
             pass
 
         return None
+
+# vim: set et cindent ts=4 ts=4 sw=4:

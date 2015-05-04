@@ -41,3 +41,5 @@ class TrustlySignatureError(Exception):
 
 class TrustlyAuthentificationError(Exception):
     pass
+
+# vim: set et cindent ts=4 ts=4 sw=4:

@@ -114,4 +114,4 @@ class JSONRPCSignedResponse(trustly.data.jsonrpcresponse.JSONRPCResponse):
         else:
             return data[name]
 
-
+# vim: set et cindent ts=4 ts=4 sw=4:

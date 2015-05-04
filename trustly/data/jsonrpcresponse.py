@@ -91,3 +91,5 @@ class JSONRPCResponse(trustly.data.response.Response):
                 raise
 
         raise ValueError('The result is not an error')
+
+# vim: set et cindent ts=4 ts=4 sw=4:

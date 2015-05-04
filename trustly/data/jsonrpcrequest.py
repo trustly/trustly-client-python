@@ -171,3 +171,5 @@ class JSONRPCRequest(trustly.data.request.Request):
             self.payload['Data']['Attributes'][name] = value
 
         return value
+
+# vim: set et cindent ts=4 ts=4 sw=4:

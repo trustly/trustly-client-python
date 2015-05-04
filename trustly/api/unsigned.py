@@ -113,3 +113,5 @@ class UnsignedAPI(trustly.api.api.API):
             # uuid for just this single call, if we have it use it, but
             #  otherwise just live happliy
         return super(UnsignedAPI, self).call(data)
+
+# vim: set et cindent ts=4 ts=4 sw=4:

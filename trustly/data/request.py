@@ -57,4 +57,4 @@ class Request(trustly.data.data.Data):
         self.set('uuid', uuid)
         return uuid
  
-
+# vim: set et cindent ts=4 ts=4 sw=4:

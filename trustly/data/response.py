@@ -141,3 +141,4 @@ class Response(trustly.data.data.Data):
             else: 
                 return self.response_result
 
+# vim: set et cindent ts=4 ts=4 sw=4:

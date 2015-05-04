@@ -220,3 +220,5 @@ class API(object):
             else:
                 return '0'
         return None
+
+# vim: set et cindent ts=4 ts=4 sw=4:

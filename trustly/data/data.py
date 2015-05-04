@@ -90,3 +90,5 @@ class Data(object):
             return json.dumps(data, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         else:
             return json.dumps(data)
+
+# vim: set et cindent ts=4 ts=4 sw=4:

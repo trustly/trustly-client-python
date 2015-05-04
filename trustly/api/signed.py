@@ -349,3 +349,5 @@ class SignedAPI(trustly.api.api.API):
                 host=self.api_host, port=self.api_port, is_https=self.api_is_https)
 
         return api.hello()
+
+# vim: set et cindent ts=4 ts=4 sw=4:
