@@ -47,7 +47,7 @@ class JSONRPCNotificationResponse(trustly.data.data.Data):
     def set_success(self, success=None):
         status = 'OK'
         if success is not None and success != True:
-            status = 'FAILURE'
+            status = 'FAILED'
 
         self.set_data('status', status)
 
