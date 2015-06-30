@@ -126,35 +126,35 @@ class SignedAPI(trustly.api.api.API):
             suggestedminamount=None, suggestedmaxamount=None,
             integrationmodule=None, holdnotifications=None):
 
-                attributes=dict(
-                        Locale=locale,
-                        Amount=amount,
-                        Currency=currency,
-                        Country=country,
-                        IP=ip,
-                        SuccessURL=successurl,
-                        FailURL=failurl,
-                        TemplateURL=templateurl,
-                        URLTarget=urltarget,
-                        MobilePhone=mobilephone,
-                        Firstname=firstname,
-                        Lastname=lastname,
-                        NationalIdentificationNumber=nationalidentificationnumber,
-                        ShopperStatement=shopperstatement,
-                        SuggestedMinAmount=suggestedminamount,
-                        SuggestedMaxAmount=suggestedmaxamount,
-                        IntegrationModule=integrationmodule
-                        )
+        attributes = dict(
+                Locale=locale,
+                Amount=amount,
+                Currency=currency,
+                Country=country,
+                IP=ip,
+                SuccessURL=successurl,
+                FailURL=failurl,
+                TemplateURL=templateurl,
+                URLTarget=urltarget,
+                MobilePhone=mobilephone,
+                Firstname=firstname,
+                Lastname=lastname,
+                NationalIdentificationNumber=nationalidentificationnumber,
+                ShopperStatement=shopperstatement,
+                SuggestedMinAmount=suggestedminamount,
+                SuggestedMaxAmount=suggestedmaxamount,
+                IntegrationModule=integrationmodule
+                )
 
         if holdnotifications is not None:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Deposit',
                 data=dict(
-                        NotificationURL=notificationurl,
-                        EndUserID=enduserid,
-                        MessageID=messageid
-                        ),
+                    NotificationURL=notificationurl,
+                    EndUserID=enduserid,
+                    MessageID=messageid
+                    ),
                 attributes=attributes
                 )
         return self.call(data)
@@ -167,32 +167,32 @@ class SignedAPI(trustly.api.api.API):
             nationalidentificationnumber=None, address=None,
             holdnotifications=None):
 
-                attributes=dict(
-                        Locale=locale,
-                        Country=country,
-                        IP=ip,
-                        TemplateURL=templateurl,
-                        ClearingHouse=clearinghouse,
-                        BankNumber=banknumber,
-                        AccountNumber=accountnumber,
-                        Firstname=firstname,
-                        Lastname=lastname,
-                        MobilePhone=mobilephone,
-                        NationalIdentificationNumber=nationalidentificationnumber,
-                        Address=address
-                        )
+        attributes = dict(
+                Locale=locale,
+                Country=country,
+                IP=ip,
+                TemplateURL=templateurl,
+                ClearingHouse=clearinghouse,
+                BankNumber=banknumber,
+                AccountNumber=accountnumber,
+                Firstname=firstname,
+                Lastname=lastname,
+                MobilePhone=mobilephone,
+                NationalIdentificationNumber=nationalidentificationnumber,
+                Address=address
+                )
 
         if holdnotifications is not None:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Withdraw',
                 data=dict(
-                        NotificationURL=notificationurl,
-                        EndUserID=enduserid,
-                        MessageID=messageid,
-                        Currency=currency,
-                        Amount=None
-                        ),
+                    NotificationURL=notificationurl,
+                    EndUserID=enduserid,
+                    MessageID=messageid,
+                    Currency=currency,
+                    Amount=None
+                    ),
                 attributes=attributes
                 )
         return self.call(data)
@@ -234,26 +234,26 @@ class SignedAPI(trustly.api.api.API):
             mobilephone=None, firstname=None, lastname=None, selectaccount=None,
             holdnotifications=None):
 
-                attributes=dict(
-                        Locale=locale,
-                        Country=country,
-                        IP=ip,
-                        SuccessURL=successurl,
-                        URLTarget=urltarget,
-                        MobilePhone=mobilephone,
-                        Firstname=firstname,
-                        Lastname=lastname
-                        )
+        attributes = dict(
+            Locale=locale,
+            Country=country,
+            IP=ip,
+            SuccessURL=successurl,
+            URLTarget=urltarget,
+            MobilePhone=mobilephone,
+            Firstname=firstname,
+            Lastname=lastname
+        )
 
         if holdnotifications is not None:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='SelectAccount',
                 data=dict(
-                        NotificationURL=notificationurl,
-                        EndUserID=enduserid,
-                        MessageID=messageid
-                        ),
+                    NotificationURL=notificationurl,
+                    EndUserID=enduserid,
+                    MessageID=messageid
+                    ),
                 attributes=attributes
                 )
         return self.call(data)
@@ -263,25 +263,24 @@ class SignedAPI(trustly.api.api.API):
             nationalidentificationnumber=None, address=None,
             holdnotifications=None):
 
-        attributes=dict(
-                MobilePhone=mobilephone,
-                NationalIdentificationNumber=nationalidentificationnumber,
-                Address=address
-                )
+        attributes = dict(
+            MobilePhone=mobilephone,
+            NationalIdentificationNumber=nationalidentificationnumber,
+            Address=address
+        )
 
         if holdnotifications is not None:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='RegisterAccount',
                 data=dict(
-                        EndUserID=enduserid,
-                        ClearingHouse=clearinghouse,
-                        BankNumber=banknumber,
-                        AccountNumber=accountnumber,
-                        Firstname=firstname,
-                        Lastname=lastname
-                        ),
-
+                    EndUserID=enduserid,
+                    ClearingHouse=clearinghouse,
+                    BankNumber=banknumber,
+                    AccountNumber=accountnumber,
+                    Firstname=firstname,
+                    Lastname=lastname
+                    ),
                 attributes=attributes
                 )
         return self.call(data)
@@ -291,16 +290,15 @@ class SignedAPI(trustly.api.api.API):
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='AccountPayout',
                 data=dict(
-                        NotificationURL=notificationurl,
-                        AccountID=accountid,
-                        EndUserID=enduserid,
-                        MessageID=messageid,
-                        Amount=amount,
-                        Currency=currency
-                        ),
-
+                    NotificationURL=notificationurl,
+                    AccountID=accountid,
+                    EndUserID=enduserid,
+                    MessageID=messageid,
+                    Amount=amount,
+                    Currency=currency
+                    ),
                 attributes=dict(
-                        )
+                    )
                 )
         return self.call(data)
 
@@ -312,31 +310,31 @@ class SignedAPI(trustly.api.api.API):
 
         authorizeonly = self.api_bool(authorizeonly)
 
-                attributes=dict(
-                    AuthorizeOnly=authorizeonly,
-                    TemplateData=templatedata,
-                    SuccessURL=successurl,
-                    Method=method,
-                    Lastname=lastname,
-                    Firstname=firstname,
-                    URLTarget=urltarget,
-                    Locale=locale,
-                    Amount=amount,
-                    TemplateURL=templateurl,
-                    Currency=currency,
-                    DisplayCurrency=displaycurrency,
-                    IP=ip
-                    )
+        attributes = dict(
+            AuthorizeOnly=authorizeonly,
+            TemplateData=templatedata,
+            SuccessURL=successurl,
+            Method=method,
+            Lastname=lastname,
+            Firstname=firstname,
+            URLTarget=urltarget,
+            Locale=locale,
+            Amount=amount,
+            TemplateURL=templateurl,
+            Currency=currency,
+            DisplayCurrency=displaycurrency,
+            IP=ip
+            )
 
         if holdnotifications is not None:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='P2P',
                 data=dict(
-                        NotificationURL=notificationurl,
-                        EndUserID=enduserid,
-                        MessageID=messageid
-                        ),
+                    NotificationURL=notificationurl,
+                    EndUserID=enduserid,
+                    MessageID=messageid
+                    ),
                 attributes=attributes
                 )
         return self.call(data)
@@ -345,10 +343,10 @@ class SignedAPI(trustly.api.api.API):
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Capture',
                 data=dict(
-                        OrderID=orderid,
-                        Amount=amount,
-                        Currency=currency
-                        ),
+                    OrderID=orderid,
+                    Amount=amount,
+                    Currency=currency
+                    ),
 
                 attributes=dict(
                     )
@@ -359,8 +357,8 @@ class SignedAPI(trustly.api.api.API):
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Void',
                 data=dict(
-                        OrderID=orderid
-                        ),
+                    OrderID=orderid
+                    ),
 
                 attributes=dict(
                     )
