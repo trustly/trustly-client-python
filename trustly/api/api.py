@@ -88,7 +88,7 @@ class API(object):
 
         decoded_signature = base64.b64decode(signature)
         plaintext = method + uuid + self.serialize_data(data)
-        sha1hash = SHA.new(plaintext)
+        sha1hash = SHA.new(plaintext.encode('utf-8'))
 
         return self.trustly_verifyer.verify(sha1hash, decoded_signature)
 
