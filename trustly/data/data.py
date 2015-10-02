@@ -29,7 +29,7 @@ class Data(object):
     payload = None
 
     def __init__(self):
-            self.payload = {}
+        self.payload = {}
 
         # Vacuum out all keys being set to None in the data to be communicated
     def vacuum(self, data):
