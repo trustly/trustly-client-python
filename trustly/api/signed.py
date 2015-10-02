@@ -45,15 +45,18 @@ class SignedAPI(trustly.api.api.API):
     api_username = None
     api_password = None
 
-    def __init__(self, merchant_privatekeyfile, username, password, host='trustly.com', port=443, is_https=True):
+    def __init__(self, merchant_privatekey, username, password, host='trustly.com', port=443, is_https=True):
 
         super(SignedAPI, self).__init__(host=host, port=port, is_https=is_https)
 
         self.api_username = username
         self.api_password = password
 
-        if merchant_privatekeyfile is not None:
-            self.load_merchant_privatekey(merchant_privatekeyfile)
+        if merchant_privatekey is not None:
+            if merchant_privatekey.find("\n") > -1:
+                self.use_merchant_privatekey(merchant_privatekey)
+            else:
+                self.load_merchant_privatekey(merchant_privatekey)
 
     def load_merchant_privatekey(self, filename):
         pkeyfile = file(filename, 'r')
