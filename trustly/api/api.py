@@ -60,7 +60,14 @@ class API(object):
         self.load_trustly_publickey()
 
     def load_trustly_publickey(self):
-        trustly_pkey_str = pkgutil.get_data('trustly.api', 'keys/{0}.public.pem'.format(self.api_host))
+        trustly_pkey_str = None
+        try:
+            trustly_pkey_str = pkgutil.get_data('trustly.api', 'keys/{0}:{1}.public.pem'.format(self.api_host, self.api_port))
+        except IOError as e:
+            pass
+        if trustly_pkey_str is None:
+            trustly_pkey_str = pkgutil.get_data('trustly.api', 'keys/{0}.public.pem'.format(self.api_host))
+
         self.trustly_publickey = RSA.importKey(trustly_pkey_str)
         self.trustly_verifyer = PKCS1_v1_5.new(self.trustly_publickey)
 
