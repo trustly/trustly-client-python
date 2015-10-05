@@ -305,29 +305,36 @@ class SignedAPI(trustly.api.api.API):
                 )
         return self.call(data)
 
-    def p2p(self, notificationurl, enduserid, messageid, ip,
-            authorizeonly=None, templatedata=None, successurl=None,
-            method=None, lastname=None, firstname=None, urltarget=None,
-            locale=None, amount=None, currency=None, templateurl=None,
-            displaycurrency=None, holdnotifications=None):
-
-        authorizeonly = self.api_bool(authorizeonly)
+    def p2p(self, notificationurl, enduserid, messageid,
+            locale=None, amount=None, currency=None, country=None, ip=None,
+            successurl=None, failurl=None, templateurl=None, urltarget=None,
+            mobilephone=None, firstname=None, lastname=None,
+            nationalidentificationnumber=None, shopperstatement=None,
+            suggestedminamount=None, suggestedmaxamount=None,
+            integrationmodule=None, holdnotifications=None,
+            authorizeonly=None, templatedata=None):
 
         attributes = dict(
-            AuthorizeOnly=authorizeonly,
-            TemplateData=templatedata,
-            SuccessURL=successurl,
-            Method=method,
-            Lastname=lastname,
-            Firstname=firstname,
-            URLTarget=urltarget,
-            Locale=locale,
-            Amount=amount,
-            TemplateURL=templateurl,
-            Currency=currency,
-            DisplayCurrency=displaycurrency,
-            IP=ip
-            )
+                AuthorizeOnly=self.api_bool(authorizeonly),
+                TemplateData=templatedata,
+                Locale=locale,
+                Amount=amount,
+                Currency=currency,
+                Country=country,
+                IP=ip,
+                SuccessURL=successurl,
+                FailURL=failurl,
+                TemplateURL=templateurl,
+                URLTarget=urltarget,
+                MobilePhone=mobilephone,
+                Firstname=firstname,
+                Lastname=lastname,
+                NationalIdentificationNumber=nationalidentificationnumber,
+                ShopperStatement=shopperstatement,
+                SuggestedMinAmount=suggestedminamount,
+                SuggestedMaxAmount=suggestedmaxamount,
+                IntegrationModule=integrationmodule
+                )
 
         if holdnotifications is not None:
             attributes['HoldNotifications'] = 1
