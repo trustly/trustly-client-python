@@ -80,7 +80,7 @@ class JSONRPCSignedResponse(trustly.data.jsonrpcresponse.JSONRPCResponse):
     def get_error_code(self):
         if self.is_error():
             try:
-                return self.response_result.get['data']['code']
+                return self.response_result['data']['code']
             except KeyError as e:
                 return None
             except:
@@ -93,7 +93,7 @@ class JSONRPCSignedResponse(trustly.data.jsonrpcresponse.JSONRPCResponse):
     def get_error_message(self):
         if self.is_error():
             try:
-                return self.response_result.get['data']['message']
+                return self.response_result['data']['message']
             except KeyError as e:
                 return None
             except:
