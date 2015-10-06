@@ -26,6 +26,7 @@ import httplib
 import pkgutil
 import types
 import base64
+import locale
 
 from Crypto.Signature import PKCS1_v1_5
 from Crypto.Hash import SHA
@@ -72,13 +73,13 @@ class API(object):
         self.trustly_verifyer = PKCS1_v1_5.new(self.trustly_publickey)
 
     def serialize_data(self, data=None):
-        ret = ''
+        ret = unicode('')
         if type(data) == types.ListType:
-            for k in sorted(data, key=lambda s: str(s)):
+            for k in data:
                 ret = ret + self.serialize_data(k)
         elif type(data) == types.DictType:
-            for k in sorted(data.keys(), key=lambda s: str(s)):
-                ret = ret + k + self.serialize_data(data[k]) 
+            for k in sorted(data.keys(), cmp=locale.strcoll):
+                ret = ret + unicode(k) + self.serialize_data(data[k]) 
         elif data is not None:
             return unicode(data)
         return ret
