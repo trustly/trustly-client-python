@@ -234,7 +234,7 @@ class SignedAPI(trustly.api.api.API):
 
     def selectaccount(self, notificationurl, enduserid, messageid,
             locale=None, country=None, ip=None, successurl=None, urltarget=None,
-            mobilephone=None, firstname=None, lastname=None, selectaccount=None,
+            mobilephone=None, firstname=None, lastname=None, 
             holdnotifications=None):
 
         attributes = dict(
