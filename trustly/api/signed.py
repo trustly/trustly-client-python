@@ -149,7 +149,7 @@ class SignedAPI(trustly.api.api.API):
                 IntegrationModule=integrationmodule
                 )
 
-        if holdnotifications is not None:
+        if holdnotifications:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Deposit',
@@ -185,7 +185,7 @@ class SignedAPI(trustly.api.api.API):
                 Address=address
                 )
 
-        if holdnotifications is not None:
+        if holdnotifications:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Withdraw',
@@ -248,7 +248,7 @@ class SignedAPI(trustly.api.api.API):
             Lastname=lastname
         )
 
-        if holdnotifications is not None:
+        if holdnotifications:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='SelectAccount',
@@ -272,7 +272,7 @@ class SignedAPI(trustly.api.api.API):
             Address=address
         )
 
-        if holdnotifications is not None:
+        if holdnotifications:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='RegisterAccount',
@@ -336,7 +336,7 @@ class SignedAPI(trustly.api.api.API):
                 IntegrationModule=integrationmodule
                 )
 
-        if holdnotifications is not None:
+        if holdnotifications:
             attributes['HoldNotifications'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='P2P',
