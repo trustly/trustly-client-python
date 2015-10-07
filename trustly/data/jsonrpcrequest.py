@@ -55,7 +55,7 @@ class JSONRPCRequest(trustly.data.request.Request):
             if attributes is not None:
                 payload['params']['Data']['Attributes'] = attributes
 
-            self.payload = payload
+            self.payload = self.vacuum(payload)
 
             # We do not relay the method in the super call as for the JSON RPC
             # we keep this value in the payload and manage it ourself.
