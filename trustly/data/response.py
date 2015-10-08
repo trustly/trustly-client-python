@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 import json
 import types
+import pprint
 
 import trustly.data.data
 import trustly.exceptions
