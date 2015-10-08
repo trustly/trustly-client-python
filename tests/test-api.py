@@ -393,7 +393,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
     def testCreate(self):
         self.assertIsNotNone(self.api, msg='API Created with text privatekey1')
         self.assertEqual(self.api.merchant_privatekey.exportKey(format='PEM'), self.privatekey1,
-                msg='API created with key string')
+                msg='API created with privatekey1 string')
 
         privatekeyfile = tempfile.NamedTemporaryFile()
         privatekeyfile.write(self.privatekey2)
@@ -406,7 +406,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 port=443,
                 is_https=True)
         self.assertEqual(api2.merchant_privatekey.exportKey(format='PEM'), self.privatekey2,
-                msg='API created from file with correct key')
+                msg='API created from file based private key')
         privatekeyfile.close()
 
         api2.use_merchant_privatekey(self.privatekey1)
@@ -519,7 +519,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "Deposit"
                 }
-        self.assertEquals(request, facit, msg="Bad deposit request data is correct")
+        self.assertEqual(request, facit, msg="Bad deposit request data is correct")
 
         self._setup_mock_call(
                 response_body="""{"version":"1.1","result":{"data":{"orderid":"2153587137","url":"https://test.trustly.com/_/orderclient.php?SessionID=6414b9f5-65e6-4cbd-9815-f80b7abc2f84&OrderID=2153587137&Locale="},"signature":"EpNO3WCvaY1Afne9qhJUXUdiNrWv9j3CfpNp3fa1ARsv7Mi5cZWsT4UlTgWnuS4/NJ/D8/joKwRdiOHLizv+qeo9AVgE+Gp7pcBuv/uu83gnlaSHuR/9byoJceCbKB/S3EakA0w3lEPCg60RqG4LQcg4VgheL5zh6wIkWMXtxHwg6bPQ+8NVA/Cnd118Oqiz2fqIqHdYfh2MPiqqzLQxca+8QYryTpqGZa8pM9gAqsmzjYKlVLUEe2CXAIs2mnIZ4tsAH3LuXsKzx99D3mtgN1XNLv+k+9q9Qrga7LXS9NozLr/POMZCE+i8/DrbXtFFXtv8oJVKgIVlNjvZnJG0kw==","uuid":"ad4f3dbe-6c1d-11e5-9d5e-0800279bcb52","method":"Deposit"}}""",
