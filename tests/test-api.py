@@ -533,24 +533,6 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
 
         facit = {
                 "version": "1.1",
-                "result": {
-                    "data": {
-                        "orderid": "2153587137",
-                        "url": "https://test.trustly.com/_/orderclient.php?SessionID=6414b9f5-65e6-4cbd-9815-f80b7abc2f84&OrderID=2153587137&Locale="
-                        },
-                    "signature": "EpNO3WCvaY1Afne9qhJUXUdiNrWv9j3CfpNp3fa1ARsv7Mi5cZWsT4UlTgWnuS4/NJ/D8/joKwRdiOHLizv+qeo9AVgE+Gp7pcBuv/uu83gnlaSHuR/9byoJceCbKB/S3EakA0w3lEPCg60RqG4LQcg4VgheL5zh6wIkWMXtxHwg6bPQ+8NVA/Cnd118Oqiz2fqIqHdYfh2MPiqqzLQxca+8QYryTpqGZa8pM9gAqsmzjYKlVLUEe2CXAIs2mnIZ4tsAH3LuXsKzx99D3mtgN1XNLv+k+9q9Qrga7LXS9NozLr/POMZCE+i8/DrbXtFFXtv8oJVKgIVlNjvZnJG0kw==",
-                    "uuid": "ad4f3dbe-6c1d-11e5-9d5e-0800279bcb52",
-                    "method": "Deposit"
-                    }
-                }
-
-        self.assertEquals(response.get_uuid(), facit['result']['uuid'], msg="Short deposit response UUID is not correct")
-        self.assertEquals(response.get_method(), facit['result']['method'], msg="Short deposit response Method is not correct")
-        self.assertEquals(response.get_data(), facit['result']['data'], msg="Short deposit response Data is not correct")
-        self.assertEquals(response.get_data('orderid'), facit['result']['data']['orderid'], msg="Short deposit response orderid is not correct")
-
-        facit = {
-                "version": "1.1",
                 "params": {
                     "Data": {
                         "Username": "testusername",
@@ -566,16 +548,33 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 }
 
         request = json.loads(mock_api_input_body)
-        self.assertEquals(request, facit, msg="Short deposit request data is not correct")
+        self.assertEqual(request, facit, msg="Short deposit request data is not correct")
+
+        facit = {
+                "version": "1.1",
+                "result": {
+                    "data": {
+                        "orderid": "2153587137",
+                        "url": "https://test.trustly.com/_/orderclient.php?SessionID=6414b9f5-65e6-4cbd-9815-f80b7abc2f84&OrderID=2153587137&Locale="
+                        },
+                    "signature": "EpNO3WCvaY1Afne9qhJUXUdiNrWv9j3CfpNp3fa1ARsv7Mi5cZWsT4UlTgWnuS4/NJ/D8/joKwRdiOHLizv+qeo9AVgE+Gp7pcBuv/uu83gnlaSHuR/9byoJceCbKB/S3EakA0w3lEPCg60RqG4LQcg4VgheL5zh6wIkWMXtxHwg6bPQ+8NVA/Cnd118Oqiz2fqIqHdYfh2MPiqqzLQxca+8QYryTpqGZa8pM9gAqsmzjYKlVLUEe2CXAIs2mnIZ4tsAH3LuXsKzx99D3mtgN1XNLv+k+9q9Qrga7LXS9NozLr/POMZCE+i8/DrbXtFFXtv8oJVKgIVlNjvZnJG0kw==",
+                    "uuid": "ad4f3dbe-6c1d-11e5-9d5e-0800279bcb52",
+                    "method": "Deposit"
+                    }
+                }
+        self.assertEqual(response.get_uuid(), facit['result']['uuid'], msg="Short deposit response UUID is not correct")
+        self.assertEqual(response.get_method(), facit['result']['method'], msg="Short deposit response Method is not correct")
+        self.assertEqual(response.get_data(), facit['result']['data'], msg="Short deposit response Data is not correct")
+        self.assertEqual(response.get_data('orderid'), facit['result']['data']['orderid'], msg="Short deposit response orderid is not correct")
 
         self._setup_mock_call(
                 response_body="""{"version":"1.1","result":{"data":{"orderid":"2153587137","url":"https://test.trustly.com/_/orderclient.php?SessionID=6414b9f5-65e6-4cbd-9815-f80b7abc2f84&OrderID=2153587137&Locale="},"signature":"EpNO3WCvaY1Afne9qhJUXUdiNrWv9j3CfpNp3fa1ARsv7Mi5cZWsT4UlTgWnuS4/NJ/D8/joKwRdiOHLizv+qeo9AVgE+Gp7pcBuv/uu83gnlaSHuR/9byoJceCbKB/S3EakA0w3lEPCg60RqG4LQcg4VgheL5zh6wIkWMXtxHwg6bPQ+8NVA/Cnd118Oqiz2fqIqHdYfh2MPiqqzLQxca+8QYryTpqGZa8pM9gAqsmzjYKlVLUEe2CXAIs2mnIZ4tsAH3LuXsKzx99D3mtgN1XNLv+k+9q9Qrga7LXS9NozLr/POMZCE+i8/DrbXtFFXtv8oJVKgIVlNjvZnJG0kw==","uuid":"ad4f3dbe-6c1d-11e5-9d5e-0800279bcb52","method":"Deposit"}}""",
                 call_uuid="ad4f3dbe-6c1d-11e5-9d5e-0800279bcb52"
                 )
         response = self.api.deposit(
-                notificationurl='http://notificationurl',
-                enduserid='enduser02',
-                messageid='message02',
+                notificationurl='http://notificationurl07',
+                enduserid='enduser07',
+                messageid='message07',
                 );
 
 
