@@ -654,7 +654,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "Withdraw"
                 }
-        self.assertEquals(request, facit, msg="Withdraw request data is correct")
+        self.assertEqual(request, facit, msg="Withdraw request data is correct")
 
         self._teardown_mock_call()
 
@@ -692,7 +692,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "Refund"
                 }
-        self.assertEquals(request, facit, msg="Refund request data is correct")
+        self.assertEqual(request, facit, msg="Refund request data is correct")
 
         self._teardown_mock_call()
 
@@ -715,7 +715,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
         request = json.loads(mock_api_input_body)
         facit = {
                 }
-        self.assertEquals(request, facit, msg="ApproveWithdrawal request data is correct")
+        self.assertEqual(request, facit, msg="ApproveWithdrawal request data is correct")
 
         self._teardown_mock_call()
 
@@ -738,7 +738,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
         request = json.loads(mock_api_input_body)
         facit = {
                 }
-        self.assertEquals(request, facit, msg="DenyWithdrawal request data is correct")
+        self.assertEqual(request, facit, msg="DenyWithdrawal request data is correct")
 
         self._teardown_mock_call()
 
@@ -791,7 +791,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "RegisterAccount"
                 }
-        self.assertEquals(request, facit, msg="RegisterAccount request data is correct")
+        self.assertEqual(request, facit, msg="RegisterAccount request data is correct")
 
         self._teardown_mock_call()
 
@@ -850,7 +850,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "SelectAccount"
                 }
-        self.assertEquals(request, facit, msg="SelectAccount request data is correct")
+        self.assertEqual(request, facit, msg="SelectAccount request data is correct")
 
         self._teardown_mock_call()
 
@@ -896,7 +896,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "AccountPayout"
                 }
-        self.assertEquals(request, facit, msg="AccountPayout request data is correct")
+        self.assertEqual(request, facit, msg="AccountPayout request data is correct")
 
         self._teardown_mock_call()
 
@@ -934,7 +934,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "Capture"
                 }
-        self.assertEquals(request, facit, msg="Capture request data is correct")
+        self.assertEqual(request, facit, msg="Capture request data is correct")
 
         self._teardown_mock_call()
 
@@ -968,7 +968,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "Void"
                 }
-        self.assertEquals(request, facit, msg="Void request data is correct")
+        self.assertEqual(request, facit, msg="Void request data is correct")
 
         self._teardown_mock_call()
 
@@ -1044,7 +1044,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                     },
                 "method": "P2P"
                 }
-        self.assertEquals(request, facit, msg="P2P request data is correct")
+        self.assertEqual(request, facit, msg="P2P request data is correct")
 
         self._teardown_mock_call()
 
