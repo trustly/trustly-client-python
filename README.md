@@ -78,7 +78,8 @@ Example notification processing
 -------------------------------
 
     request=api.handle_notification(notification_body))
-        # FIXME Handle the incoming notification data here
+    # FIXME Handle the incoming notification data here
     notifyresponse=api.notification_response(request, True)
 
+    # Write json response to the output stream for the web server
     req.write(notifyresponse.json())
