@@ -57,8 +57,12 @@ Example deposit call
 
     import trustly.api.signed
 
-    api = trustly.api.signed.SignedAPI(merchant_privatekeyfile='/opt/application/private.pem',
-            username='username', password='password')
+    trustly_username = 'YourUsername'
+    trustly_password = 'YourPassword'
+    trustly_pem = '/location/to/your/pem-file'
+
+    api = trustly.api.signed.SignedAPI(merchant_privatekey=trustly_pem,
+            username=trustly_username, password=trustly_password)
 
     deposit = api.deposit(
         notificationurl='https://example.com/trustlynotification',
