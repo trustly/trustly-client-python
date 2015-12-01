@@ -814,6 +814,8 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 country='NO',
                 ip='127.0.0.7',
                 successurl='http://successurl07',
+                failurl='http://failurl07',
+                templateurl='http://templateurl07',
                 urltarget='urltarget07',
                 mobilephone='mobilephone07',
                 firstname='firstname07',
@@ -839,6 +841,8 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                             "Country": "NO",
                             "URLTarget": "urltarget07",
                             "SuccessURL": "http://successurl07",
+                            "FailURL": "http://failurl07",
+                            "TemplateURL": "http://templateurl07",
                             "Lastname": "lastname07",
                             "HoldNotifications": 1
                             },
@@ -846,10 +850,11 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                         "EndUserID": "enduserid07"
                         },
                     "UUID": "b0001ec2-6cf2-11e5-9d5e-0800279bcb51",
-                    "Signature": "U9WLj21i4nd8MSaIDBxrxJvqWPPN1VsiZaGJz3Ru5HDS8osc97mg43cSihsArG51GEDPguQD6BGl8mGn3Zt311WdNmyY1/JvSVRjhILxORh3m3aulFPjMOkY2Vi1YLJdTBzKdqcc5R5HzlrVejh0fMkR+QfkaOBwfrfgTgtwXej5MRlZtqCTg0sXsacArBfC16K58B/+PxJCM4KpLKHRMLD4GARgzzvVjg66jji/cMlXFisWMyGMDvJBT4hpIOiIH9unN73fqUz1pzYAsKg1WL22QWFjOjKL5K3Ge+xsXlz5avIuvsfWYGv2ktwZ85hYyCTlNLZ2GhhpycMBM3LhYA=="
+                    "Signature": "eK3VSFlMQozYBZEcwM440sxkdwfmhlOJxSYM4WDGtqkC8WQXaMbYYhzd/YlemG6ZnRDteWc2GR6jCDD0mkmzapkS9mCFtrN1+fUUSOUEETDME4Gm/gXLgvlTr3NnlgKbpum4+QOn8PNH+hZphRlP7/KPChovxlRqnicDo6JWyNYx5az6VIXgAnE+RvgBpbkDkD0JmEaJmO5cH3LH7DvkA39VIqkPncUvfe0n6KqXzdzRSdoLo8DdsXYpqrBC52ooIb1q2205f2lElxu3bSfB2XUFzl98qJsJnJ2EfVdn0BnRfKZk3ofMlIsbqalhYHQF7l+ZmuF+LQhLJnX3Kmy04Q=="
                     },
                 "method": "SelectAccount"
                 }
+
         self.assertEqual(request, facit, msg="SelectAccount request data is correct")
 
         self._teardown_mock_call()

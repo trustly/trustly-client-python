@@ -233,7 +233,8 @@ class SignedAPI(trustly.api.api.API):
         return self.call(data)
 
     def selectaccount(self, notificationurl, enduserid, messageid,
-            locale=None, country=None, ip=None, successurl=None, urltarget=None,
+            locale=None, country=None, ip=None, successurl=None,
+            failurl=None, templateurl=None, urltarget=None,
             mobilephone=None, firstname=None, lastname=None,
             holdnotifications=None):
 
@@ -242,6 +243,8 @@ class SignedAPI(trustly.api.api.API):
             Country=country,
             IP=ip,
             SuccessURL=successurl,
+            FailURL=failurl,
+            TemplateURL=templateurl,
             URLTarget=urltarget,
             MobilePhone=mobilephone,
             Firstname=firstname,
