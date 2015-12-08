@@ -474,7 +474,14 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 suggestedminamount='10.01',
                 suggestedmaxamount='100.01',
                 integrationmodule='integrationmodule01',
-                holdnotifications=True
+                holdnotifications=True,
+                email='email01@test.com',
+                shippingaddresscountry='NO',
+                shippingaddresspostalcode='12345',
+                shippingaddresscity='shippingaddresscity01',
+                shippingaddressline1='shippingaddressline101',
+                shippingaddressline2='shippingaddressline201',
+                shippingaddress='shippingaddress01',
                 );
 
         self.assertEqual(response.is_success(), False, msg='Bad deposit call is not a success')
@@ -509,13 +516,20 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                             "IP": "127.0.0.1",
                             "TemplateURL": "http://templateurl",
                             "IntegrationModule": "integrationmodule01",
-                            "NationalIdentificationNumber": "nationalidentificationnumber01"
+                            "NationalIdentificationNumber": "nationalidentificationnumber01",
+                            "ShippingAddress": "shippingaddress01",
+                            "ShippingAddressCity": "shippingaddresscity01",
+                            "ShippingAddressCountry": "NO",
+                            "ShippingAddressLine1": "shippingaddressline101",
+                            "ShippingAddressLine2": "shippingaddressline201",
+                            "ShippingAddressPostalcode": "12345",
+                            "Email": "email01@test.com",
                             },
                         "Password": "testpassword",
                         "EndUserID": "enduser01"
                         },
                     "UUID": "ad4f3dbe-6c1d-11e5-9d5e-0800279bcb51",
-                    "Signature": "GYDWKq4dpx7gF4YMck7IMT/lL4qNocOIRneiHs5v/XTBlQFJr/0Ueb5jaLKRVy2u9qzOM2h5Oe8pIYCIsedzlv4llN+5CfjSuFYuPsK7H5ZLA7ZKjddV9bt+IOEgE1YcPp7k5gODBDH5HfRBLiugSdK8/oeLpm7pK29ulcslSJDYDEkilsEfL1RneWQiD1IyftNCG3OazoU/Xs8dSnamdPOyFV9blPtHkfrxZ6AtLJvGc0vlsgqiHJT1GZl2Ea+WWXMFgde4NFbl671ryEEJUzwptoqljcVVOh86I0dAf5HdNwurQIqll1frs51SYuF4IrTj4nckWzm2vs+jaPh2Jw=="
+                    "Signature": "PpYZO48CFfLgcPlYRr8kMjA8KLN13N+aFQpEjsPAFttN+OUKcy1WMo+uN6JM7gFi6BRaKfkkpTo1rviDgWogmA414rN9XA6eaSUV5iVObJHkZy6K7Zk/BI2PUm2dIZ7MJelNYBpUSNcY5CDbjExSDBSooMe9yp4+k6bcH35OPX+xIT/XmPBaeWi05seghfafHF1xeyktOD7+BQsvi2u9gFynC/JlyzAW9ld4SM/X3d0e753wYKoxH9SjN3S5nF2MjeBUkWjuAI4FXQZ11jOIJpxk8bEyiUQ29JLBI3Sm+nMEzlv/vxp0qdtGwo0sYy99MMZ9HMOYV4gAqjDoZcGb/w==",
                     },
                 "method": "Deposit"
                 }
@@ -618,7 +632,9 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 mobilephone='mobilephone03',
                 nationalidentificationnumber='nationalidentificationnumber03',
                 address='address03',
-                holdnotifications=False
+                holdnotifications=False,
+                email='email02@test.com',
+                dateofbirth='2015-12-24',
                 )
 
         self.assertEqual(response.is_success(), True, msg='Withdraw call is a success')
@@ -644,13 +660,15 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                             "Address": "address03",
                             "TemplateURL": "http://templateurl03",
                             "IP": "127.0.0.2",
-                            "NationalIdentificationNumber": "nationalidentificationnumber03"
+                            "NationalIdentificationNumber": "nationalidentificationnumber03",
+                            "DateOfBirth": "2015-12-24",
+                            "Email": "email02@test.com",
                             },
                         "Password": "testpassword",
                         "EndUserID": "enduserid03"
                         },
                     "UUID": "ad4f3dbe-6c1d-11e5-9d5e-0800279bcb53",
-                    "Signature": "DV8JBv63ObhdBg52FTzHbI8bQpbQHemDZT85mze4KqKi140ZwJ7MtqjBUqqMIeJFeo6AU3t+hC4A1LzU12anbCprr6DWYkzKhjgmYNPfAW/6OFrciWLqggH0IKlvbyDKaMqQ2jv/jstQ+6nZwcuSkOGSQEfYS/22Z00aNYDSIj6YXzM/3+ElybyN6fuU/h94cVQ3nCtJVkv0NwBX4pYZHWM9I8+DuzgUBCdF1PcOCHBC7CkVHldo4aUnyDzdQzjmhvMOI1GuCBdoqt4p+D6rq+FqwCIQRRg9NfK1E8HAi9W2ke8+cLpZN9Jt6NA4R94XOtwKp2ddZI85Djc7/bVjGA=="
+                    "Signature": "VBrsuxZK73YxVqaxpIEdrpnevnmw+TNbua8kBaWyDsuH0Kqx0Itf7j7CtyvO5eWzxKWgV7kQ8kaeKmbqYdAomvM5jWOCyEUz/hVQJJrA4oGFTUqGdo03sAAMi6o/uKyDLymrEJvRdxyGOwD86iKGA76Kk//YuniLp3qgjFE81tbCKsGRnjm9MA++CjdIPL4N/Bx7ljWqCs3AT39hLQp17sCjzwATGv9yZ9YVAMEISd09w+aIXjXEQtkqyCt4MFspQCm3i46sCO263f/lwEZqF+7yo4jUKXC5P8vUeNGIDKOch6A/TiWtw4s6z+cdkRAHGZlCVZNp9Ps0O7Vej/vzkQ==",
                     },
                 "method": "Withdraw"
                 }
@@ -762,7 +780,14 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 mobilephone='mobilephone06',
                 nationalidentificationnumber='nationalidentificationnumber06',
                 address='address06',
-                holdnotifications=False
+                holdnotifications=False,
+                email='test03@test.com',
+                dateofbirth='2015-12-14',
+                addresscountry='DK',
+                addresspostalcode='123457',
+                addresscity='addresscity01',
+                addressline1='addressline101',
+                addressline2='addressline201',
                 )
 
         self.assertEqual(response.is_success(), True, msg='RegisterAccount call is a success')
@@ -781,13 +806,20 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                         "Attributes": {
                             "NationalIdentificationNumber": "nationalidentificationnumber06",
                             "MobilePhone": "mobilephone06",
-                            "Address": "address06"
+                            "DateOfBirth": "2015-12-14",
+                            "Email": "test03@test.com",
+                            "Address": "address06",
+                            "AddressCity": "addresscity01",
+                            "AddressCountry": "DK",
+                            "AddressLine1": "addressline101",
+                            "AddressLine2": "addressline201",
+                            "AddressPostalcode": "123457",
                             },
                         "Password": "testpassword",
                         "EndUserID": "enduserid06"
                         },
                     "UUID": "fc32a824-6cf1-11e5-9d5e-0800279bcb51",
-                    "Signature": "MHij9s0tkznfBemFEXVgmjvmoJ7Z6yJLfPvs6m6fUpuVYZpA/EJvVDtynrRMYMwY3EOuGAulBhQOPir1x4WuAwxfjXcORtLNbmW1ohioOZ5wDztAB7Uh6a3MI1LnzDFCtUn68vXUNH1EA/ZQk9nFLTLTo2O5y+f5IFv2EByBoEWCHxHjLYXsDJ4yl1NTsD3SFCQSXFCiguqr4fNZyDvTP6O1Zhp5mLMfuZs9ttE4SpwmB/isxXpu6DfGWYipDI3K57qD7vrIk1NYbyGEP1becCntZptFXMvb3zwGH6UbWCGALB9Ah3LXxV61sq9e/jISyWFf3KGRmbL9/OvV17LhEw=="
+                    "Signature": "teHO0NnNaVGqH6xm/6182gjz1n2HqLFdjogsCc/HyHGZmhwCrvu1ZkG8iaaO7D+hfr4ZBWlbi4Et9w/CRw5P34ChXYCdqyQyn3F7amskaiylT7JKa157PjkMCCGuv1yCjD+s/ofoXxTRYxgAUFAEApP145KjXLa5SXzMpkZuW5wKd+vMETtBNcxzwd7mL92meD273QTuHpkdAv8LlOMMPk4UvaFcuM7/7LRplqNWqOEg3p6aWqiUTnakH2/vwIfuvSxDFodwncf7e5sAoTUP2bGJOvJ/cIH01VIMTOK4yqvHQ06T/8u94/9Bq2v7LXLylLzI6SEyIsReuwJp9AvYWA==",
                     },
                 "method": "RegisterAccount"
                 }
@@ -820,7 +852,9 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 mobilephone='mobilephone07',
                 firstname='firstname07',
                 lastname='lastname07',
-                holdnotifications=True
+                holdnotifications=True,
+                email='test04@test.com',
+                dateofbirth='2015-12-14',
                 )
 
         self.assertEqual(response.is_success(), True, msg='SelectAccount call is a success')
@@ -844,13 +878,15 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                             "FailURL": "http://failurl07",
                             "TemplateURL": "http://templateurl07",
                             "Lastname": "lastname07",
-                            "HoldNotifications": 1
+                            "HoldNotifications": 1,
+                            "DateOfBirth": "2015-12-14",
+                            "Email": "test04@test.com",
                             },
                         "Password": "testpassword",
                         "EndUserID": "enduserid07"
                         },
                     "UUID": "b0001ec2-6cf2-11e5-9d5e-0800279bcb51",
-                    "Signature": "eK3VSFlMQozYBZEcwM440sxkdwfmhlOJxSYM4WDGtqkC8WQXaMbYYhzd/YlemG6ZnRDteWc2GR6jCDD0mkmzapkS9mCFtrN1+fUUSOUEETDME4Gm/gXLgvlTr3NnlgKbpum4+QOn8PNH+hZphRlP7/KPChovxlRqnicDo6JWyNYx5az6VIXgAnE+RvgBpbkDkD0JmEaJmO5cH3LH7DvkA39VIqkPncUvfe0n6KqXzdzRSdoLo8DdsXYpqrBC52ooIb1q2205f2lElxu3bSfB2XUFzl98qJsJnJ2EfVdn0BnRfKZk3ofMlIsbqalhYHQF7l+ZmuF+LQhLJnX3Kmy04Q=="
+                    "Signature": "OI7HXZ1df3G1i+Ku9/MpxkZREic8323EIYnF6310LYjXWmq4dH1Jg/m3TqGeDO23xpTjpRKJeRvECIJg4f5PC+A/GdJ9/fhjz1TrSogKPQLv5gusBHu0Up2r1v27Nl/O9ihoC5gJhcZdh4T//+d2PAgZPHvUJwLht527GzdS5DyhthHel3pC2xP+b1YdGp6bpf8gj8o4739HcMHvbigpjvhfFdUVeJVg53GOMXoT+Z3o+BzubH9T/E72K1KJyNaHqyF9SKPQr0kGlbWMb2NRWeud35h07uuWYPcPydt7daNQdQLfdqsH9nApnLHu4gvH2iBRe+uAe5PngfgpgQTLfA==",
                     },
                 "method": "SelectAccount"
                 }

@@ -121,13 +121,17 @@ class SignedAPI(trustly.api.api.API):
 
         return super(SignedAPI, self).call(request)
 
-    def deposit(self, notificationurl, enduserid, messageid, 
+    def deposit(self, notificationurl, enduserid, messageid,
             locale=None, amount=None, currency=None, country=None, ip=None,
             successurl=None, failurl=None, templateurl=None, urltarget=None,
             mobilephone=None, firstname=None, lastname=None,
             nationalidentificationnumber=None, shopperstatement=None,
             suggestedminamount=None, suggestedmaxamount=None,
-            integrationmodule=None, holdnotifications=None):
+            integrationmodule=None, holdnotifications=None,
+            email=None, shippingaddresscountry=None,
+            shippingaddresspostalcode=None, shippingaddresscity=None,
+            shippingaddressline1=None, shippingaddressline2=None,
+            shippingaddress=None):
 
         attributes = dict(
                 Locale=locale,
@@ -146,7 +150,14 @@ class SignedAPI(trustly.api.api.API):
                 ShopperStatement=shopperstatement,
                 SuggestedMinAmount=suggestedminamount,
                 SuggestedMaxAmount=suggestedmaxamount,
-                IntegrationModule=integrationmodule
+                IntegrationModule=integrationmodule,
+                Email=email,
+                ShippingAddressCountry=shippingaddresscountry,
+                ShippingAddressPostalcode=shippingaddresspostalcode,
+                ShippingAddressCity=shippingaddresscity,
+                ShippingAddressLine1=shippingaddressline1,
+                ShippingAddressLine2=shippingaddressline2,
+                ShippingAddress=shippingaddress
                 )
 
         if holdnotifications:
@@ -168,7 +179,7 @@ class SignedAPI(trustly.api.api.API):
             clearinghouse=None, banknumber=None, accountnumber=None,
             firstname=None, lastname=None, mobilephone=None,
             nationalidentificationnumber=None, address=None,
-            holdnotifications=None):
+            holdnotifications=None, email=None, dateofbirth=None):
 
         attributes = dict(
                 Locale=locale,
@@ -182,7 +193,9 @@ class SignedAPI(trustly.api.api.API):
                 Lastname=lastname,
                 MobilePhone=mobilephone,
                 NationalIdentificationNumber=nationalidentificationnumber,
-                Address=address
+                Address=address,
+                Email=email,
+                DateOfBirth=dateofbirth
                 )
 
         if holdnotifications:
@@ -236,7 +249,7 @@ class SignedAPI(trustly.api.api.API):
             locale=None, country=None, ip=None, successurl=None,
             failurl=None, templateurl=None, urltarget=None,
             mobilephone=None, firstname=None, lastname=None,
-            holdnotifications=None):
+            holdnotifications=None, email=None, dateofbirth=None):
 
         attributes = dict(
             Locale=locale,
@@ -248,7 +261,9 @@ class SignedAPI(trustly.api.api.API):
             URLTarget=urltarget,
             MobilePhone=mobilephone,
             Firstname=firstname,
-            Lastname=lastname
+            Lastname=lastname,
+            Email=email,
+            DateOfBirth=dateofbirth
         )
 
         if holdnotifications:
@@ -267,11 +282,21 @@ class SignedAPI(trustly.api.api.API):
     def registeraccount(self, enduserid, clearinghouse, banknumber,
             accountnumber, firstname, lastname, mobilephone=None,
             nationalidentificationnumber=None, address=None,
-            holdnotifications=None):
+            holdnotifications=None, email=None, dateofbirth=None,
+            addresscountry=None,
+            addresspostalcode=None, addresscity=None,
+            addressline1=None, addressline2=None):
 
         attributes = dict(
             MobilePhone=mobilephone,
             NationalIdentificationNumber=nationalidentificationnumber,
+            Email=email,
+            DateOfBirth=dateofbirth,
+            AddressCountry=addresscountry,
+            AddressPostalcode=addresspostalcode,
+            AddressCity=addresscity,
+            AddressLine1=addressline1,
+            AddressLine2=addressline2,
             Address=address
         )
 
