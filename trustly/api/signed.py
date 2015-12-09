@@ -252,19 +252,19 @@ class SignedAPI(trustly.api.api.API):
             holdnotifications=None, email=None, dateofbirth=None):
 
         attributes = dict(
-            Locale=locale,
-            Country=country,
-            IP=ip,
-            SuccessURL=successurl,
-            FailURL=failurl,
-            TemplateURL=templateurl,
-            URLTarget=urltarget,
-            MobilePhone=mobilephone,
-            Firstname=firstname,
-            Lastname=lastname,
-            Email=email,
-            DateOfBirth=dateofbirth
-        )
+                Locale=locale,
+                Country=country,
+                IP=ip,
+                SuccessURL=successurl,
+                FailURL=failurl,
+                TemplateURL=templateurl,
+                URLTarget=urltarget,
+                MobilePhone=mobilephone,
+                Firstname=firstname,
+                Lastname=lastname,
+                Email=email,
+                DateOfBirth=dateofbirth
+                )
 
         if holdnotifications:
             attributes['HoldNotifications'] = 1
@@ -288,17 +288,17 @@ class SignedAPI(trustly.api.api.API):
             addressline1=None, addressline2=None):
 
         attributes = dict(
-            MobilePhone=mobilephone,
-            NationalIdentificationNumber=nationalidentificationnumber,
-            Email=email,
-            DateOfBirth=dateofbirth,
-            AddressCountry=addresscountry,
-            AddressPostalcode=addresspostalcode,
-            AddressCity=addresscity,
-            AddressLine1=addressline1,
-            AddressLine2=addressline2,
-            Address=address
-        )
+                MobilePhone=mobilephone,
+                NationalIdentificationNumber=nationalidentificationnumber,
+                Email=email,
+                DateOfBirth=dateofbirth,
+                AddressCountry=addresscountry,
+                AddressPostalcode=addresspostalcode,
+                AddressCity=addresscity,
+                AddressLine1=addressline1,
+                AddressLine2=addressline2,
+                Address=address
+                )
 
         if holdnotifications:
             attributes['HoldNotifications'] = 1
