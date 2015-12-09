@@ -635,6 +635,11 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                 holdnotifications=False,
                 email='email02@test.com',
                 dateofbirth='2015-12-24',
+                addresscountry='FI',
+                addresspostalcode='123458',
+                addresscity='addresscity03',
+                addressline1='addressline103',
+                addressline2='addressline203',
                 )
 
         self.assertEqual(response.is_success(), True, msg='Withdraw call is a success')
@@ -657,18 +662,23 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
                             "Lastname": "lastname03",
                             "Country": "UK",
                             "BankNumber": "banknumber03",
-                            "Address": "address03",
                             "TemplateURL": "http://templateurl03",
                             "IP": "127.0.0.2",
                             "NationalIdentificationNumber": "nationalidentificationnumber03",
                             "DateOfBirth": "2015-12-24",
                             "Email": "email02@test.com",
+                            "Address": "address03",
+                            "AddressCity": "addresscity03",
+                            "AddressCountry": "FI",
+                            "AddressLine1": "addressline103",
+                            "AddressLine2": "addressline203",
+                            "AddressPostalcode": "123458",
                             },
                         "Password": "testpassword",
                         "EndUserID": "enduserid03"
                         },
                     "UUID": "ad4f3dbe-6c1d-11e5-9d5e-0800279bcb53",
-                    "Signature": "VBrsuxZK73YxVqaxpIEdrpnevnmw+TNbua8kBaWyDsuH0Kqx0Itf7j7CtyvO5eWzxKWgV7kQ8kaeKmbqYdAomvM5jWOCyEUz/hVQJJrA4oGFTUqGdo03sAAMi6o/uKyDLymrEJvRdxyGOwD86iKGA76Kk//YuniLp3qgjFE81tbCKsGRnjm9MA++CjdIPL4N/Bx7ljWqCs3AT39hLQp17sCjzwATGv9yZ9YVAMEISd09w+aIXjXEQtkqyCt4MFspQCm3i46sCO263f/lwEZqF+7yo4jUKXC5P8vUeNGIDKOch6A/TiWtw4s6z+cdkRAHGZlCVZNp9Ps0O7Vej/vzkQ==",
+                    "Signature": "FymOrCcNHSeI8R7qol3Zp0YSHxc5maPxFhw3j+ibSPWpsLmEkij35EHP7RH+VLpkXTJ0V7LeZL8TE/9zAGoBDHQXEt54HW3oxNIdUILRDn9xGe6ihOSp2PI9zUaY4MVl49OH9ywImqY3LpOfEtMFjOJsuHPpQuiy3w74IzVMO/fukr941yeku/FqUUimlLJhh5xVzyY27yka3CPcOd/wiFDzqtW+DRQmLHb/kOUB1D8FRRWXbKsstd96KVP5OJ+TSIAUCry7sfnb2ntTZJwHpCTvvl/PG/fmcr6qFYK97y+B5VxxVQhZx2WjUpDuO+1gBZvBXcoWi5WGlyBEQXCSmg==",
                     },
                 "method": "Withdraw"
                 }

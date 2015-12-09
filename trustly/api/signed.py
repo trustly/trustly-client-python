@@ -179,7 +179,10 @@ class SignedAPI(trustly.api.api.API):
             clearinghouse=None, banknumber=None, accountnumber=None,
             firstname=None, lastname=None, mobilephone=None,
             nationalidentificationnumber=None, address=None,
-            holdnotifications=None, email=None, dateofbirth=None):
+            holdnotifications=None, email=None, dateofbirth=None,
+            addresscountry=None,
+            addresspostalcode=None, addresscity=None,
+            addressline1=None, addressline2=None):
 
         attributes = dict(
                 Locale=locale,
@@ -193,9 +196,14 @@ class SignedAPI(trustly.api.api.API):
                 Lastname=lastname,
                 MobilePhone=mobilephone,
                 NationalIdentificationNumber=nationalidentificationnumber,
-                Address=address,
                 Email=email,
-                DateOfBirth=dateofbirth
+                DateOfBirth=dateofbirth,
+                AddressCountry=addresscountry,
+                AddressPostalcode=addresspostalcode,
+                AddressCity=addresscity,
+                AddressLine1=addressline1,
+                AddressLine2=addressline2,
+                Address=address
                 )
 
         if holdnotifications:
