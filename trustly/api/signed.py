@@ -131,7 +131,7 @@ class SignedAPI(trustly.api.api.API):
             email=None, shippingaddresscountry=None,
             shippingaddresspostalcode=None, shippingaddresscity=None,
             shippingaddressline1=None, shippingaddressline2=None,
-            shippingaddress=None):
+            shippingaddress=None, unchangeablenationalidentificationnumber=None):
 
         attributes = dict(
                 Locale=locale,
@@ -162,6 +162,8 @@ class SignedAPI(trustly.api.api.API):
 
         if holdnotifications:
             attributes['HoldNotifications'] = 1
+        if unchangeablenationalidentificationnumber:
+            attributes['UnchangeableNationalIdentificationNumber'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Deposit',
                 data=dict(
@@ -257,7 +259,8 @@ class SignedAPI(trustly.api.api.API):
             locale=None, country=None, ip=None, successurl=None,
             failurl=None, templateurl=None, urltarget=None,
             mobilephone=None, firstname=None, lastname=None,
-            holdnotifications=None, email=None, dateofbirth=None):
+            holdnotifications=None, email=None, dateofbirth=None,
+            requestdirectdebitmandate=None):
 
         attributes = dict(
                 Locale=locale,
@@ -276,6 +279,8 @@ class SignedAPI(trustly.api.api.API):
 
         if holdnotifications:
             attributes['HoldNotifications'] = 1
+        if requestdirectdebitmandate:
+            attributes['RequestDirectDebitMandate'] = 1
 
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='SelectAccount',
                 data=dict(
