@@ -416,6 +416,25 @@ class SignedAPI(trustly.api.api.API):
                 )
         return self.call(data)
 
+    def charge(self, accountid, notificationurl, enduserid, messageid,
+            amount, currency, shopperstatement=None):
+
+        attributes = dict(
+                ShopperStatement=shopperstatement
+                )
+
+        data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Charge',
+                data=dict(
+                    AccountID=accountid,
+                    NotificationURL=notificationurl,
+                    EndUserID=enduserid,
+                    MessageID=messageid,
+                    Amount=amount,
+                    Currency=currency
+                    ),
+                attributes=attributes
+                )
+        return self.call(data)
 
     def hello(self):
             # The hello call is not signed, use an unsigned API to do the request and then void it 
