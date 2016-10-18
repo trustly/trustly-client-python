@@ -22,8 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+from __future__ import absolute_import
 import json
 import types
+import six
 
 class Data(object):
     payload = None
@@ -33,7 +35,7 @@ class Data(object):
 
         # Vacuum out all keys being set to None in the data to be communicated
     def vacuum(self, data):
-        if type(data) == types.ListType:
+        if type(data) == list:
             ret = list()
             for k in data:
                 if k is not None:
@@ -46,9 +48,9 @@ class Data(object):
 
             return ret
 
-        elif type(data) == types.DictType:
+        elif type(data) == dict:
             ret = dict()
-            for (k, v) in data.iteritems():
+            for (k, v) in six.iteritems(data):
                 if v is not None:
                     v = self.vacuum(v)
                     if v is not None:

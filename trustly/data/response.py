@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+from __future__ import absolute_import
 import json
 import types
 import pprint
@@ -133,7 +134,7 @@ class Response(trustly.data.data.Data):
         # found.
     def get_result(self, name=None):
         if name is not None:
-            if type(self.response_result) == types.DictType:
+            if type(self.response_result) == dict:
                 return self.response_result[name]
             else:
                 raise ValueError('Result is not a dict')

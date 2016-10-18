@@ -7,7 +7,7 @@ setup(name='trustly',
         author='Per lejontand',
         license='The MIT License (MIT)',
         packages=['trustly', 'trustly.data', 'trustly.api'],
-        install_requires=['uuid', 'pycrypto'],
+        install_requires=['uuid', 'pycrypto', 'six'],
         zip_safe=False,
         package_data={'trustly.api': [ 'keys/*.public.pem' ]}
         )
