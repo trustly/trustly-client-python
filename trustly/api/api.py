@@ -22,7 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import httplib
+from __future__ import absolute_import
+import functools
 import pkgutil
 import types
 import base64
@@ -31,6 +32,8 @@ import locale
 from Crypto.Signature import PKCS1_v1_5
 from Crypto.Hash import SHA
 from Crypto.PublicKey import RSA
+import six
+import six.moves.http_client
 
 import trustly.exceptions
 import trustly.data.jsonrpcnotificationresponse
@@ -73,15 +76,19 @@ class API(object):
         self.trustly_verifyer = PKCS1_v1_5.new(self.trustly_publickey)
 
     def serialize_data(self, data=None):
-        ret = unicode('')
-        if type(data) == types.ListType:
+        ret = six.text_type('')
+        if type(data) == list:
             for k in data:
                 ret = ret + self.serialize_data(k)
-        elif type(data) == types.DictType:
-            for k in sorted(data.keys(), cmp=locale.strcoll):
-                ret = ret + unicode(k) + self.serialize_data(data[k]) 
+        elif type(data) == dict:
+            if six.PY2:
+                for k in sorted(list(data.keys()), cmp=locale.strcoll):
+                    ret = ret + six.text_type(k) + self.serialize_data(data[k])
+            else:
+                for k in sorted(list(data.keys()), key=functools.cmp_to_key(locale.strcoll)):
+                    ret = ret + six.text_type(k) + self.serialize_data(data[k])
         elif data is not None:
-            return unicode(data)
+            return six.text_type(data)
         return ret
 
     def _verify_trustly_signed_data(self, method, uuid, signature, data):
@@ -134,9 +141,9 @@ class API(object):
     def connect(self):
         try:
             if self.api_is_https:
-                call = httplib.HTTPSConnection(self.api_host, self.api_port)
+                call = six.moves.http_client.HTTPSConnection(self.api_host, self.api_port)
             else:
-                call = httplib.HTTPConnection(self.api_host, self.api_port)
+                call = six.moves.http_client.HTTPConnection(self.api_host, self.api_port)
 
         except Exception as e:
             raise trustly.exceptions.TrustlyConnectionError(str(e))
@@ -159,7 +166,7 @@ class API(object):
         return url
 
     def handle_notification(self, httpbody):
-        request = trustly.data.jsonrpcnotificationrequest.JSONRPCNotificationRequest(httpbody) 
+        request = trustly.data.jsonrpcnotificationrequest.JSONRPCNotificationRequest(httpbody)
 
         if self.verify_trustly_signed_notification(request) != True:
             raise trustly.exceptions.TrustlySignatureError('Incoming notification signature is not valid', request)
@@ -213,7 +220,7 @@ class API(object):
         return self.handle_response(request, call)
 
         # Return the last trustly.data.request.Request class used to issue a
-        # call. Useful for debugging data actually transmitted to trustly. 
+        # call. Useful for debugging data actually transmitted to trustly.
         #
         # NOTE: This will contain bare login credentials, proper caution should
         # be done before dumping this to screen or a log file to ensure login

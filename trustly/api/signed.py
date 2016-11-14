@@ -22,7 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import httplib
+from __future__ import absolute_import
+import six.moves.http_client
 import uuid
 import base64
 from Crypto.Signature import PKCS1_v1_5
@@ -33,6 +34,7 @@ import trustly.api.api
 import trustly.exceptions
 import trustly.data.jsonrpcrequest
 import trustly.data.jsonrpcsignedresponse
+import six
 
 class SignedAPI(trustly.api.api.API):
         # Basic key management, the actual key and the imported class
@@ -52,14 +54,17 @@ class SignedAPI(trustly.api.api.API):
         self.api_username = username
         self.api_password = password
 
+        if isinstance(merchant_privatekey, six.string_types):
+            merchant_privatekey = merchant_privatekey.encode()
+
         if merchant_privatekey is not None:
-            if merchant_privatekey.find("\n") > -1:
+            if merchant_privatekey.find(b"\n") > -1:
                 self.use_merchant_privatekey(merchant_privatekey)
             else:
                 self.load_merchant_privatekey(merchant_privatekey)
 
     def load_merchant_privatekey(self, filename):
-        pkeyfile = file(filename, 'r')
+        pkeyfile = open(filename, 'r')
         cert = pkeyfile.read()
         pkeyfile.close()
         self.use_merchant_privatekey(cert)
@@ -84,10 +89,13 @@ class SignedAPI(trustly.api.api.API):
         if data is None:
             data = {}
 
-        plaintext = unicode(method + uuid + self.serialize_data(data))
+        plaintext = six.text_type(method + uuid + self.serialize_data(data))
         sha1hash = SHA.new(plaintext.encode('utf-8'))
         signature = self.merchant_signer.sign(sha1hash)
-        return base64.b64encode(signature)
+        if six.PY2:
+            return base64.b64encode(signature)
+        else:
+            return base64.b64encode(signature).decode()
 
     def insert_credentials(self, request):
         request.set_data('Username', self.api_username)
@@ -437,7 +445,7 @@ class SignedAPI(trustly.api.api.API):
         return self.call(data)
 
     def hello(self):
-            # The hello call is not signed, use an unsigned API to do the request and then void it 
+            # The hello call is not signed, use an unsigned API to do the request and then void it
         api = trustly.api.unsigned.UnsignedAPI(username=self.api_username, password=self.api_password,
                 host=self.api_host, port=self.api_port, is_https=self.api_is_https)
 

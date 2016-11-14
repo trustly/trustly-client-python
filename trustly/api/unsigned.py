@@ -22,9 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+from __future__ import absolute_import
 import trustly.api.api
 import trustly.data
 import trustly.exceptions
+import six
 
 class UnsignedAPI(trustly.api.api.API):
     api_username = None
@@ -98,7 +100,7 @@ class UnsignedAPI(trustly.api.api.API):
     def call(self, method, **kwargs):
         data = trustly.data.jsonrpcrequest.JSONRPCRequest(method=method)
 
-        for (key, val) in kwargs.iteritems():
+        for (key, val) in six.iteritems(kwargs):
             data.set_param(key, val)
 
         if not self.has_session_uuid():

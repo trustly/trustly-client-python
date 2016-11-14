@@ -7,6 +7,7 @@ import tempfile
 import time
 import uuid
 import json
+import sys
 
 import trustly.api.api
 import trustly.api.signed
@@ -326,7 +327,7 @@ class SignedAPITestCase(unittest.TestCase):
     old_uuid_uuid1 = None
 
     def setUp(self):
-        self.privatekey1 = """-----BEGIN RSA PRIVATE KEY-----
+        self.privatekey1 = b"""-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAuw7IsyA8ZrdmdOootjklO7LqERnthF0Yctd1waykOnMexePQ
 luyIzedkfOHzFXb9FjBNJ+VQ2Obpw94P+tszyvGpauAywpJYV4h4IldSCiablshB
 5AefmRuEQci3iTP0vNTQ71Rs4V3+XbkXpLtv4XSqx1mZ0OBUm66Eq9IYLIzSnpv5
@@ -353,7 +354,7 @@ bXE1AoGBALlSRbcEez/HJaAk36LC5hULylM8lEzkOID8vhi2/VTVaAEg3tlbho/X
 Uqnv5ngF2T5WC3BfY9IZRZw9YaEDSwrHddjzl08/mLBceQUZQkjmH38oB+2SRGyA
 UNiBeE+cfYCIgQlRRMaA6f5UyGN76CMNhq1/em9oSb+8orFP0B72
 -----END RSA PRIVATE KEY-----"""
-        self.privatekey2 = """-----BEGIN RSA PRIVATE KEY-----
+        self.privatekey2 = b"""-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA7RW38DxmnFPwirOn9cgXSUqWGfGC5WLuVTTPKgJ5IkQb2Pij
 NiVAEkg5v4ANk1p2yzI8z0g1j1TLWIKp30yyHeyivcWRL4HhGXehWovTgcNXMed7
 3bNswnt7HsZOvSWmpY49NBfPfbKedT+MJW8X3FmU7UQqDxxRslf1SkMSQ8YL4YkU
@@ -728,7 +729,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
         global mock_api_input_method
         global mock_api_input_url
         global mock_api_input_body
-        return 
+        return
 
         self._setup_mock_call(
                 response_body = """""",
@@ -751,7 +752,7 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
         global mock_api_input_method
         global mock_api_input_url
         global mock_api_input_body
-        return 
+        return
 
         self._setup_mock_call(
                 response_body = """""",
@@ -1102,4 +1103,3 @@ cUFIRR0bMucePoXoCZEPx93iOTUgBruJ+N3eNHTr+1TX/EvNW1mkcg==
 
 if __name__ == "__main__":
     unittest.main()
-
