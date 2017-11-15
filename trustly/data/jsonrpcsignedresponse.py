@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 from __future__ import absolute_import
 import types
+import copy
 
 import trustly.data.jsonrpcresponse
 import trustly.exceptions
@@ -111,7 +112,10 @@ class JSONRPCSignedResponse(trustly.data.jsonrpcresponse.JSONRPCResponse):
                 return None
 
         if name is None:
-            return data.copy()
+            if callable(getattr(data, 'copy', None)):
+                return data.copy()
+            else:
+                return copy.copy(data)
         else:
             return data[name]
 
