@@ -444,6 +444,18 @@ class SignedAPI(trustly.api.api.API):
                 )
         return self.call(data)
 
+    def get_withdrawals(self, orderid):
+
+        data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='GetWithdrawals',
+                data=dict(
+                    OrderID=orderid
+                    ),
+
+                attributes=dict(
+                    )
+                )
+        return self.call(data)
+
     def hello(self):
             # The hello call is not signed, use an unsigned API to do the request and then void it
         api = trustly.api.unsigned.UnsignedAPI(username=self.api_username, password=self.api_password,
