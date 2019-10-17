@@ -456,6 +456,20 @@ class SignedAPI(trustly.api.api.API):
                 )
         return self.call(data)
 
+    def account_ledger(self, from_date, to_date, currency=None):
+
+        data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='AccountLedger',
+                data=dict(
+                    FromDate=str(from_date),
+                    ToDate=str(to_date),
+                    Currency=currency,
+                    ),
+
+                attributes=dict(
+                    )
+                )
+        return self.call(data)
+
     def hello(self):
             # The hello call is not signed, use an unsigned API to do the request and then void it
         api = trustly.api.unsigned.UnsignedAPI(username=self.api_username, password=self.api_password,
