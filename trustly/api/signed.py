@@ -456,6 +456,17 @@ class SignedAPI(trustly.api.api.API):
                 )
         return self.call(data)
 
+    def balance(self):
+
+        data = trustly.data.jsonrpcrequest.JSONRPCRequest(method='Balance',
+                data=dict(
+                    ),
+
+                attributes=dict(
+                    )
+                )
+        return self.call(data)
+
     def hello(self):
             # The hello call is not signed, use an unsigned API to do the request and then void it
         api = trustly.api.unsigned.UnsignedAPI(username=self.api_username, password=self.api_password,
