@@ -29,7 +29,7 @@ import types
 import base64
 import locale
 
-from Crypto.Signature import PKCS1_v1_5
+from Crypto.Signature import pkcs1_15
 from Crypto.Hash import SHA
 from Crypto.PublicKey import RSA
 import six
@@ -73,7 +73,7 @@ class API(object):
         self.api_port = api_port
 
         self.trustly_publickey = RSA.importKey(trustly_pkey_str)
-        self.trustly_verifyer = PKCS1_v1_5.new(self.trustly_publickey)
+        self.trustly_verifyer = pkcs1_15.new(self.trustly_publickey)
 
     def serialize_data(self, data=None):
         ret = six.text_type('')

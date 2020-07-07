@@ -26,7 +26,7 @@ from __future__ import absolute_import
 import six.moves.http_client
 import uuid
 import base64
-from Crypto.Signature import PKCS1_v1_5
+from Crypto.Signature import pkcs1_15
 from Crypto.Hash import SHA
 from Crypto.PublicKey import RSA
 
@@ -71,7 +71,7 @@ class SignedAPI(trustly.api.api.API):
 
     def use_merchant_privatekey(self, cert):
         self.merchant_privatekey = RSA.importKey(cert)
-        self.merchant_signer = PKCS1_v1_5.new(self.merchant_privatekey)
+        self.merchant_signer = pkcs1_15.new(self.merchant_privatekey)
 
     def sign_merchant_request(self, data):
         if self.merchant_signer is None:
