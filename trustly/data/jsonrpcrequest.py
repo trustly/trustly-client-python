@@ -68,6 +68,10 @@ class JSONRPCRequest(trustly.data.request.Request):
         if self.payload.get('params') is None:
             self.payload['params'] = {}
 
+        # Always send Attributes on Refund
+        if method and method == 'Refund' and attributes is None:
+            self.payload['params']['Data']['Attributes'] = None
+
             # Static
         self.set('version', '1.1')
 
