@@ -106,7 +106,7 @@ class APITestCase(unittest.TestCase):
 
     # serialize data
     def testSerialize(self):
-        # example from https://trustly.com/en/developer/api#/signature
+        # example from https://eu.developers.trustly.com/doc/reference/authentication
 
         ex1 = {
                 'MyKey': 'MyValue',
