@@ -57,10 +57,13 @@ class Response(trustly.data.data.Data):
         self.response_status = resp.status
         self.response_reason = resp.reason
 
-        self.response_body = resp.read()
+        body = self.response_body = resp.read()
 
         try:
-            payload = json.loads(self.response_body)
+            if isinstance(body, bytes):
+                body = body.decode('utf8')
+
+            payload = json.loads(body)
             if payload is not None:
                 self.payload = payload
         except ValueError as e:
